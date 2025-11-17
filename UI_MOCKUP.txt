@@ -1,0 +1,97 @@
+╔════════════════════════════════════════════════════════════════════╗
+║ OpenGL PLY Viewer                                         [─][□][×] ║
+╠════════════════════════════════════════════════════════════════════╣
+║                                                                    ║
+║  ┌────────────┐ ┌────────────┐   ◉ Orthographic   ○ Perspective  ║
+║  │ Load PLY 1 │ │ Load PLY 2 │                                    ║
+║  └────────────┘ └────────────┘                                    ║
+║                                                                    ║
+╠════════════════════════════════════════════════════════════════════╣
+║                                                                    ║
+║                        OpenGL View Area                            ║
+║                      (Picture Control)                             ║
+║                                                                    ║
+║          ┌──────────────┐         ┌──────────────┐                ║
+║          │     ╱╲       │         │              │                ║
+║          │    ╱  ╲      │         │    ┌────┐    │                ║
+║          │   ╱    ╲     │         │   ╱│    │╲   │                ║
+║          │  ╱______╲    │         │  │ │    │ │  │                ║
+║          │              │         │  │ └────┘ │  │                ║
+║          │  Pyramid     │         │  │  Cube  │  │                ║
+║          │  (Model 1)   │         │  │(Model 2)│  │                ║
+║          └──────────────┘         └──────────────┘                ║
+║                                                                    ║
+║                                                                    ║
+║  Instructions:                                                     ║
+║  • Left Mouse Button + Drag = Rotate camera                        ║
+║  • Mouse Wheel = Zoom In/Out                                       ║
+║  • Radio Buttons = Change projection mode                          ║
+║                                                                    ║
+╚════════════════════════════════════════════════════════════════════╝
+
+────────────────────────────────────────────────────────────────────
+
+Perspective View (Default):
+┌──────────────────────────────────────┐
+│                                      │
+│         ╱╲                ┌────┐     │
+│        ╱  ╲              ╱│    │╲    │  ← Objects appear with depth
+│       ╱    ╲            │ │    │ │   │    (closer = larger)
+│      ╱______╲           │ └────┘ │   │
+│                         └────────┘   │
+│                                      │
+└──────────────────────────────────────┘
+
+Orthographic View:
+┌──────────────────────────────────────┐
+│                                      │
+│         ╱╲                ┌────┐     │
+│        ╱  ╲              │    │      │  ← Objects maintain size
+│       ╱    ╲             │    │      │    regardless of distance
+│      ╱______╲            └────┘      │
+│                                      │
+└──────────────────────────────────────┘
+
+────────────────────────────────────────────────────────────────────
+
+User Interaction Flow:
+
+1. Click "Load PLY 1"
+   └─→ File Dialog Opens
+       └─→ Select sample_cube.ply
+           └─→ Cube appears in view
+
+2. Click "Load PLY 2"  
+   └─→ File Dialog Opens
+       └─→ Select sample_pyramid.ply
+           └─→ Both models appear side-by-side
+
+3. Mouse Interactions:
+   ├─→ Left Click + Drag
+   │   └─→ Models rotate in 3D space
+   ├─→ Mouse Wheel Up
+   │   └─→ Zoom in (closer view)
+   └─→ Mouse Wheel Down
+       └─→ Zoom out (farther view)
+
+4. Projection Toggle:
+   ├─→ Click "Perspective"
+   │   └─→ Natural 3D view with depth
+   └─→ Click "Orthographic"
+       └─→ Technical drawing view (no perspective)
+
+────────────────────────────────────────────────────────────────────
+
+Sample PLY File Structure:
+
+   sample_cube.ply             sample_pyramid.ply
+   
+      7────────6                     0 (top)
+     /|       /|                    /|\
+    4────────5 |                   / | \
+    | |      | |                  /  |  \
+    | 3──────|-2                 /   |   \
+    |/       |/                 /    |    \
+    0────────1                 1─────2─────3─────4 (base)
+
+────────────────────────────────────────────────────────────────────
